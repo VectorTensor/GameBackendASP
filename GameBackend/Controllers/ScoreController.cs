@@ -10,10 +10,12 @@ public class ScoreController : Controller
 {
 
     private DbContext _appdb;
+
     public ScoreController(ScoreAppDbContext db)
     {
         _appdb = db;
     }
+
     // GET
     [HttpGet("/score")]
     public List<ScoreModel> Index()
@@ -21,6 +23,20 @@ public class ScoreController : Controller
         var score = _appdb.Set<ScoreModel>().ToList();
         return score;
     }
-    
+
+    [HttpPost("/score")]
+    public IActionResult Create([FromBody] ScoreDto score)
+    {
+        if (score == null) return NotFound();
+        ScoreModel scoreModel = new ScoreModel
+        {
+            Score = score.Score,
+            Name = score.Name
+        };
+        _appdb.Set<ScoreModel>().Add(scoreModel);
+        _appdb.SaveChanges();
+        return Ok(scoreModel);
+    }
+
 
 }
