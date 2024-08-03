@@ -1,16 +1,40 @@
 using GameBackend.Controllers;
 using GameBackend.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ScoreAppDbContext>(options =>
+// builder.Services.AddDbContext<ScoreAppDbContext>(options =>
+// {
+//     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+// });
+builder.Services.AddDbContext<UserDataContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+
 });
+
 builder.Services.AddControllersWithViews();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header, Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
+    
+});
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<UserDataContext>();
+
+
 
 var app = builder.Build();
 
@@ -32,6 +56,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger/game";
 
 });
+app.MapIdentityApi<IdentityUser>();
 app.UseRouting();
 
 app.UseAuthorization();

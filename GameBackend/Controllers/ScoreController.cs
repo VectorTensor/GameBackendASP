@@ -2,6 +2,7 @@
 using GameBackend.Models;
 using Microsoft.AspNetCore.Mvc;
 using GameBackend.ObjectModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameBackend.Controllers;
@@ -11,13 +12,13 @@ public class ScoreController : Controller
 
     private DbContext _appdb;
 
-    public ScoreController(ScoreAppDbContext db)
+    public ScoreController(UserDataContext db)
     {
         _appdb = db;
     }
 
     // GET
-    [HttpGet("/score")]
+    [HttpGet("/score"),Authorize]
     public List<ScoreModel> Index()
     {
         var score = _appdb.Set<ScoreModel>().ToList();
