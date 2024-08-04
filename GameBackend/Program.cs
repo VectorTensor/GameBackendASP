@@ -1,5 +1,7 @@
 using GameBackend.Controllers;
 using GameBackend.Data;
+using GameBackend.Policies.SpecificUser;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -30,7 +32,11 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
     
 });
-builder.Services.AddAuthorization();
+builder.Services.AddSingleton<IAuthorizationHandler, SpecificUserHandler>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("SpecificUser", policy => policy.Requirements.Add(new SpecificUserRequirement()));
+});
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<UserDataContext>();
 
