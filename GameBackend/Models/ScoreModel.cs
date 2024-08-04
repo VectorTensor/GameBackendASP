@@ -1,4 +1,6 @@
-﻿namespace GameBackend.Models;
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace GameBackend.Models;
 
 public class ScoreModel
 {
@@ -6,6 +8,8 @@ public class ScoreModel
     public int ScoreModelId { get; set; }
     public int Score { get; set; }
     public string Name { get; set; }
+    
+    public IdentityUser idUser { get; set; }
 
    
     
