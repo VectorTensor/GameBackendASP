@@ -141,3 +141,4 @@ C:\prayash\ASP\GameBackend\GameBackend\bin\Debug\net8.0\Microsoft.Extensions.Ide
 C:\prayash\ASP\GameBackend\GameBackend\bin\Debug\net8.0\Scrutor.dll
 C:\prayash\ASP\GameBackend\GameBackend\bin\Debug\net8.0\Swashbuckle.AspNetCore.Filters.dll
 C:\prayash\ASP\GameBackend\GameBackend\bin\Debug\net8.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\prayash\ASP\GameBackend\GameBackend\obj\Debug\net8.0\GameBackend.sourcelink.json
