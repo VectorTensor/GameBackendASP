@@ -25,13 +25,15 @@ public class ScoreController : Controller
     // GET
     [HttpGet("/score")]
     [Authorize]
-    public List<ScoreModel> Index()
+    public List<ScoreGetResponseDto> Index()
     {
         var score = _appdb.Set<ScoreModel>().ToList();
-        var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-        var data= _appdb.Set<ScoreModel>().Include(sm=>sm.User).FirstOrDefault(sm => sm.UserId == userId);
-        Console.Out.Write(data.User.Email);
-        return score;
+        var result = score.Select(s => new ScoreGetResponseDto()
+        {
+            Score = s.Score,
+            name = s.Name
+        });
+        return result.ToList();
     }
 
 
