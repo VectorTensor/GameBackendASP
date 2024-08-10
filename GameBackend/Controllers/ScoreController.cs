@@ -28,6 +28,9 @@ public class ScoreController : Controller
     public List<ScoreModel> Index()
     {
         var score = _appdb.Set<ScoreModel>().ToList();
+        var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        var data= _appdb.Set<ScoreModel>().Include(sm=>sm.User).FirstOrDefault(sm => sm.UserId == userId);
+        Console.Out.Write(data.User.Email);
         return score;
     }
 
@@ -46,12 +49,11 @@ public class ScoreController : Controller
         {
             Score = score.Score,
             Name = score.Name,
-            UserId = userId ,
-            User = _appdb.Set<IdentityUser>().Find(userId)
+            UserId = userId 
         };
         _appdb.Set<ScoreModel>().Add(scoreModel);
         _appdb.SaveChanges();
-        return Ok(scoreModel);
+        return Ok(score);
     }
 
 
