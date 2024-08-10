@@ -13,7 +13,18 @@ public class UserDataContext: IdentityDbContext
     {
         
     }
-    
+
     public DbSet<ScoreModel> Scores { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<ScoreModel>()
+            .HasOne(sm => sm.User)
+            .WithOne()
+            .HasForeignKey<ScoreModel>(sm => sm.UserId);
+
+    }
+    
     
 }

@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Runtime.InteropServices.JavaScript;
+using System.Security.Claims;
 using GameBackend.Data;
 using GameBackend.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using GameBackend.ObjectModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameBackend.Controllers;
@@ -22,37 +24,30 @@ public class ScoreController : Controller
 
     // GET
     [HttpGet("/score")]
-    [Authorize(Policy = "SpecificUser")]
+    [Authorize]
     public List<ScoreModel> Index()
     {
         var score = _appdb.Set<ScoreModel>().ToList();
         return score;
     }
 
-    [Authorize(Policy = "SpecificUser")]
-    [HttpPost("/scoretest")]
-    public async Task<IActionResult> PreProcess([FromBody] ScoreUpdateDto s)
-    {
-        var claimsIdentity = User.Identity as ClaimsIdentity;
-
-        var claim = new Claim("NamePro", s.name);
-
-        claimsIdentity.AddClaim(claim);
-        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-
-        return RedirectToAction("Index");
-
-
-    }
 
     [HttpPost("/score")]
+    [Authorize]
     public IActionResult Create([FromBody] ScoreDto score)
     {
         if (score == null) return NotFound();
+
+        var user = HttpContext.User;
+        var userId = user.Claims.FirstOrDefault(c=> c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId == null) return NotFound();
         ScoreModel scoreModel = new ScoreModel
         {
             Score = score.Score,
-            Name = score.Name
+            Name = score.Name,
+            UserId = userId ,
+            User = _appdb.Set<IdentityUser>().Find(userId)
         };
         _appdb.Set<ScoreModel>().Add(scoreModel);
         _appdb.SaveChanges();

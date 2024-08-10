@@ -39,6 +39,14 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<UserDataContext>();
+builder.Services.Configure<IdentityOptions>(options =>
+{
+
+    options.Password.RequireDigit = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredUniqueChars = 0;
+
+});
 
 
 
