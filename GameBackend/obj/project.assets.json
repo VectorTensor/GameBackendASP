@@ -3285,26 +3285,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\praya\\.nuget\\packages\\": {}
+    "/home/prayash/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\prayash\\ASP\\GameBackend\\GameBackend\\GameBackend.csproj",
+      "projectUniqueName": "/home/prayash/RiderProjects/GameBackendASP/GameBackend/GameBackend.csproj",
       "projectName": "GameBackend",
-      "projectPath": "C:\\prayash\\ASP\\GameBackend\\GameBackend\\GameBackend.csproj",
-      "packagesPath": "C:\\Users\\praya\\.nuget\\packages\\",
-      "outputPath": "C:\\prayash\\ASP\\GameBackend\\GameBackend\\obj\\",
+      "projectPath": "/home/prayash/RiderProjects/GameBackendASP/GameBackend/GameBackend.csproj",
+      "packagesPath": "/home/prayash/.nuget/packages/",
+      "outputPath": "/home/prayash/RiderProjects/GameBackendASP/GameBackend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\praya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/prayash/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3385,7 +3383,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/prayash/.dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

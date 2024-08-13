@@ -24,7 +24,6 @@ public class ScoreController : Controller
 
     // GET
     [HttpGet("/score")]
-    [Authorize]
     public List<ScoreGetResponseDto> Index()
     {
         var score = _appdb.Set<ScoreModel>().ToList();
