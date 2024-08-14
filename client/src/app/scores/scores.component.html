@@ -1,6 +1,17 @@
-<p>scores works!</p>
-<ul>
-  <li *ngFor="let post of posts | async">
-    {{ post.score | json}}
-  </li>
-</ul>
+<div class="page-container">
+  <h1>Player Scores</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let post of posts | async">
+    <td>{{ post.name |json }}</td>
+    <td>{{ post.score |json }}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
