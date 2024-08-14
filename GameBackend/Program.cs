@@ -48,6 +48,19 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 });
 
+builder.Services.AddCors(options =>
+{
+    
+    options.AddPolicy("AllowAngular",builder=>builder
+        .WithOrigins("http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials()
+    );
+
+
+});
+
 
 
 var app = builder.Build();
@@ -72,9 +85,8 @@ app.UseSwaggerUI(c =>
 });
 app.MapIdentityApi<IdentityUser>();
 app.UseRouting();
-
+app.UseCors("AllowAngular");
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

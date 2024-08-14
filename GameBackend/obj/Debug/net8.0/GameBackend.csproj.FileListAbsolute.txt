@@ -285,3 +285,5 @@ C:/prayash/ASP/GameBackend/GameBackend/obj/Debug/net8.0/GameBackend.sourcelink.j
 /home/prayash/RiderProjects/GameBackendASP/GameBackend/obj/Debug/net8.0/GameBackend.genruntimeconfig.cache
 /home/prayash/RiderProjects/GameBackendASP/GameBackend/obj/Debug/net8.0/ref/GameBackend.dll
 /home/prayash/RiderProjects/GameBackendASP/GameBackend/obj/Debug/net8.0/GameBack.128672B3.Up2Date
+/home/prayash/RiderProjects/GameBackendASP/GameBackend/bin/Debug/net8.0/System.Security.Permissions.dll
+/home/prayash/RiderProjects/GameBackendASP/GameBackend/bin/Debug/net8.0/System.Web.Cors.dll
