@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 
 import {HttpClient} from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { Post } from './post';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScoreApiServiceService {
-  scores: any[];
+
   readonly URL = "http://localhost:5133/score"
+  scores: Observable<Post[]> ;
+
 
   constructor(private http: HttpClient) {
-    this.scores = [];
+    this.scores = new Observable();
   }
 
   getScores(){
