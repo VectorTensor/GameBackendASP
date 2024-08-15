@@ -6,7 +6,14 @@ import { IScoreApiService } from './score-api-service.service';
 })
 export class TestApiServiceService implements IScoreApiService {
 
-  posts = [{name:"Prayash",score:12}]
+  posts = [{name:"Prayash",score:12},
+{name:"Trash",score:121},
+{name:"Newman",score:133},
+{name:"Stacy",score:112},
+{name:"Gojo",score:120}
+
+
+  ]
 
   constructor() { }
 

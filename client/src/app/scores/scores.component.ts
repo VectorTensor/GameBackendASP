@@ -9,7 +9,7 @@ import { TestApiServiceService } from '../test-api-service.service';
   imports: [CommonModule],
   templateUrl: './scores.component.html',
   styleUrl: './scores.component.css',
-  providers:[{provide: IScoreApiService , useClass:ScoreApiServiceService}]
+  providers:[{provide: IScoreApiService , useClass:TestApiServiceService}]
 })
 export class ScoresComponent implements OnInit{
 
