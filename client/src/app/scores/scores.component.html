@@ -1,6 +1,6 @@
 <p>scores works!</p>
 <ul>
-  <li *ngFor="let post of posts | async">
-    {{ post.score | json}}
+  <li *ngFor="let post of posts">
+    {{ post | json}}
   </li>
 </ul>

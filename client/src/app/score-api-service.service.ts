@@ -8,7 +8,7 @@ import { Post } from './post';
 @Injectable({
   providedIn: 'root'
 })
-export class ScoreApiServiceService {
+export class ScoreApiServiceService implements IScoreApiService{
 
   readonly URL = "http://localhost:5133/score"
   scores: Observable<Post[]> ;
@@ -27,3 +27,7 @@ export class ScoreApiServiceService {
 
   }
 }
+export abstract class IScoreApiService{
+  abstract getScores(): any;
+}
+
