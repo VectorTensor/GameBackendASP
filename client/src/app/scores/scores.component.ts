@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import {ScoreApiServiceService} from "../score-api-service.service";
+import {IScoreApiService, ScoreApiServiceService} from "../score-api-service.service";
 import {CommonModule} from "@angular/common";
+import { TestApiServiceService } from '../test-api-service.service';
 
 @Component({
   selector: 'app-scores',
@@ -8,13 +9,13 @@ import {CommonModule} from "@angular/common";
   imports: [CommonModule],
   templateUrl: './scores.component.html',
   styleUrl: './scores.component.css',
-  providers:[{provide:ScoreApiServiceService}]
+  providers:[{provide: IScoreApiService , useClass:TestApiServiceService}]
 })
 export class ScoresComponent implements OnInit{
 
   posts: any;
 
-  constructor(private scoreService: ScoreApiServiceService) {
+  constructor(private scoreService:IScoreApiService ) {
 
 
   }
