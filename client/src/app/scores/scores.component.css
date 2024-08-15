@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  justify-content: center;
+  padding-top: 20px;
+  height: 100vh;
+  background-color: #f5f5dc; /* Creamy white background */
+}
+
+table {
+  width: 600px; /* Fixed width */
+  /*width: 50%;*/
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+thead {
+  background-color: #007BFF;
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+th {
+  background-color: #0056b3; /* Darker green for the header */
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
