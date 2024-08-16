@@ -6,7 +6,9 @@ import { Form,ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@a
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [
+    ReactiveFormsModule
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
