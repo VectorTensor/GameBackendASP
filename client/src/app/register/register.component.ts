@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Form,ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {NgIf} from "@angular/common";
+import {routeAnimation} from "../Animations/BasicAnimations";
 
 
 @Component({
@@ -11,6 +12,7 @@ import {NgIf} from "@angular/common";
     ReactiveFormsModule,
     NgIf
   ],
+  animations: [routeAnimation],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
