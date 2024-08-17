@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Form,ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {NgIf} from "@angular/common";
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -15,10 +17,13 @@ import { Form,ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@a
 export class RegisterComponent implements OnInit{
 
   registerForm: FormGroup = this.fb.group({
-    email:'',
-    password: '',
-    repeatPassword: ''
-  })
+    email:['',[Validators.required, Validators.email]],
+    password: ['',[Validators.required, Validators.minLength(6)]],
+    repeatPassword:['',Validators.required]
+  },{
+    validators: this.passwordMatchValidator
+
+  });
 
   constructor(private fb: FormBuilder){
 
@@ -26,6 +31,12 @@ export class RegisterComponent implements OnInit{
   }
 
   ngOnInit() {
+
+  }
+
+  passwordMatchValidator(form: FormGroup){
+
+    return form.get('password')?.value === form.get('password')?.value ? null:{'mismatch': true};
 
   }
 
