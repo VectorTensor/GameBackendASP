@@ -1,2 +1,26 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+
+.NavButtons {
+
+  margin-left:100px;
+
+}
+
+.mat-button{
+
+  margin:10px;
+;
+
+}
+.active-link {
+  background-color: #ffffff30; /* Adjust the color for the selected button */
+  border-bottom: 2px solid #ffffff; /* Add a border to highlight the active button */
+}
+
+
 
 
