@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Form,ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {NgIf} from "@angular/common";
 import {routeAnimation} from "../Animations/BasicAnimations";
+import {IScoreApiService, ScoreApiServiceService} from "../score-api-service.service";
+import {ScoresComponent} from "../scores/scores.component";
 
 
 @Component({
@@ -13,6 +15,7 @@ import {routeAnimation} from "../Animations/BasicAnimations";
     NgIf
   ],
   animations: [routeAnimation],
+  providers:[{provide: IScoreApiService,useClass:ScoreApiServiceService}],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -27,7 +30,7 @@ export class RegisterComponent implements OnInit{
 
   });
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private ApiService:IScoreApiService){
 
 
   }
@@ -43,11 +46,29 @@ export class RegisterComponent implements OnInit{
   }
 
 
-  onSubmit() {
+  async onSubmit() {
 
     if(this.registerForm.valid){
 
       console.log('Registration successful', this.registerForm.value);
+
+      this.ApiService.Register({
+        email: this.registerForm.get('email')?.value,
+        password: this.registerForm.get('password')?.value
+      }).subscribe(
+        (response:any) => {
+
+          console.log("success "+response);
+
+        }
+        ,
+        (error:any)=>{
+          console.log("error " + error);
+
+        }
+      );
+
+
 
 
     }

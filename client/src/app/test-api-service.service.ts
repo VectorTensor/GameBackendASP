@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IScoreApiService } from './score-api-service.service';
+import {RegisterDto} from "./Model/Dto";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,9 @@ export class TestApiServiceService implements IScoreApiService {
 
     return this.posts;
 
+  }
+
+  Register(registerInfo: RegisterDto): any {
   }
 
 }
